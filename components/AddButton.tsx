@@ -6,7 +6,7 @@ export const AddButton = () => {
     <Fab
       color="primary"
       aria-label="add"
-      sx={{ position: "absolute", bottom: 70, right: 16 }}
+      sx={{ position: "fixed", bottom: 70, right: 16 }}
     >
       <AddShoppingCartIcon />
     </Fab>
