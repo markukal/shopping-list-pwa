@@ -1,6 +1,5 @@
-import { AppBar, Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import type { NextPage } from "next";
-import { AddButton } from "../components/AddButton";
 import { BottomNav } from "../components/BottomNav";
 import { TopBar } from "../components/TopBar";
 

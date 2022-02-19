@@ -1,7 +1,7 @@
-import { AppBar, Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import type { NextPage } from "next";
 import { useState } from "react";
-import { AddButton } from "../components/AddButton";
+import { AddModal } from "../components/AddButton";
 import { BottomNav } from "../components/BottomNav";
 import { ItemContainer } from "../components/ItemContainer";
 import { TopBar } from "../components/TopBar";
@@ -29,8 +29,8 @@ const Home: NextPage = () => {
     <Box sx={{ height: "100vh" }}>
       <TopBar />
       <ItemContainer items={groceries} />
-      {/* TODO: Rename */}
-      <AddButton addItems={addItems} />
+      {/* actually a button to open a modal */}
+      <AddModal addItems={addItems} />
       <BottomNav />
     </Box>
   );

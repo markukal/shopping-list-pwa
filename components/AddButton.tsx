@@ -1,4 +1,4 @@
-import { Box, Fab, Modal, Paper, Typography } from "@mui/material";
+import { Fab, Modal, Paper, Typography } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { FC, useState } from "react";
 import styled from "@emotion/styled";
@@ -17,10 +17,11 @@ const ModalContainer = styled(Paper)`
 `;
 
 interface IAddModalProps {
+  // eslint-disable-next-line unused-imports/no-unused-vars
   addItems: (x: IItems[]) => void;
 }
 
-export const AddButton: FC<IAddModalProps> = ({ addItems }) => {
+export const AddModal: FC<IAddModalProps> = ({ addItems }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,7 +48,7 @@ export const AddButton: FC<IAddModalProps> = ({ addItems }) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Lisää tuotteita
           </Typography>
-          <InputWithTags addItems={addItems} />
+          <InputWithTags addItems={addItems} handleClose={handleClose} />
         </ModalContainer>
       </Modal>
     </>
