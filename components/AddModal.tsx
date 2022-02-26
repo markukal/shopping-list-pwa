@@ -26,7 +26,6 @@ export const AddModal: FC<IAddModalProps> = ({ addItems }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  console.log(open);
   return (
     <>
       <Fab

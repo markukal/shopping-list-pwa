@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useMemo } from "react";
 import useLocalStorage from "../hooks/UseLocalStorage";
+import { CssBaseline } from "@mui/material";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [themeColor, setThemeColor] = useLocalStorage<string>(
@@ -14,15 +15,25 @@ function MyApp({ Component, pageProps }: AppProps) {
       createTheme({
         palette: {
           primary: { main: themeColor },
+          mode: "dark",
         },
       }),
     [themeColor]
   );
 
+  console.log(themeColor);
+
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} setThemeColor={setThemeColor} />
-    </ThemeProvider>
+    themeColor && (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component
+          {...pageProps}
+          setThemeColor={setThemeColor}
+          themeColor={themeColor}
+        />
+      </ThemeProvider>
+    )
   );
 }
 

@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import type { NextPage } from "next";
 import { AddModal } from "../components/AddModal";
 import { BottomNav } from "../components/BottomNav";
@@ -12,12 +12,7 @@ export interface IItems {
 }
 
 const Home: NextPage = () => {
-  const theme = useTheme();
   const [groceries, setGroceries] = useLocalStorage<IItems[]>("groceries", []);
-  // const [themeColor, setThemeColor] = useLocalStorage<string>(
-  //   "themeColor",
-  //   theme.palette.primary.main
-  // );
 
   const addItems = (items: IItems[]) => {
     const arrA = groceries;

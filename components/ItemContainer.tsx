@@ -43,6 +43,13 @@ export const ItemContainer: FC<IItemContainerProps> = ({
     setGroceries(items);
   };
 
+  const handleChecked = (index: number) => {
+    if (items[index]) {
+      items[index].checked = !items[index].checked;
+      setGroceries(items);
+    }
+  };
+
   return (
     items && (
       <div>
@@ -50,7 +57,13 @@ export const ItemContainer: FC<IItemContainerProps> = ({
           <NotebookList>
             <ul style={{ padding: 0 }}>
               {items.map((item, index) => (
-                <ListRow key={index}>
+                <ListRow
+                  key={index}
+                  onClick={() => handleChecked(index)}
+                  style={{
+                    textDecoration: item.checked ? "line-through" : "none",
+                  }}
+                >
                   {item.item}
                   <IconButton onClick={() => handleDelete(index)}>
                     <DeleteIcon />
