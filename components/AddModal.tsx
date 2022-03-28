@@ -6,22 +6,23 @@ import { InputWithTags } from "./InputWithTags";
 import { IItems } from "../pages";
 
 const ModalContainer = styled(Paper)`
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  width: 100vw;
+  width: 90vw;
+  margin: auto;
+  margin-top: 20vh;
   height: 50vh;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  text-align: center;
 `;
 
 interface IAddModalProps {
   // eslint-disable-next-line unused-imports/no-unused-vars
   addItems: (x: IItems[]) => void;
+  setKeyboardVisible: (x: boolean) => void;
 }
 
-export const AddModal: FC<IAddModalProps> = ({ addItems }) => {
+export const AddModal: FC<IAddModalProps> = ({
+  addItems,
+  setKeyboardVisible,
+}) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -44,10 +45,19 @@ export const AddModal: FC<IAddModalProps> = ({ addItems }) => {
         aria-describedby="modal-modal-description"
       >
         <ModalContainer>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Lisää tuotteita
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ mb: 2, pt: 2 }}
+          >
+            Add groceries
           </Typography>
-          <InputWithTags addItems={addItems} handleClose={handleClose} />
+          <InputWithTags
+            addItems={addItems}
+            handleClose={handleClose}
+            setKeyboardVisible={setKeyboardVisible}
+          />
         </ModalContainer>
       </Modal>
     </>

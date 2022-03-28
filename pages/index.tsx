@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
+import { Box, Fade } from "@mui/material";
 import type { NextPage } from "next";
+import { useState } from "react";
 import { AddModal } from "../components/AddModal";
 import { BottomNav } from "../components/BottomNav";
 import { ItemContainer } from "../components/ItemContainer";
@@ -14,6 +15,8 @@ export interface IItems {
 const Home: NextPage = () => {
   const [groceries, setGroceries] = useLocalStorage<IItems[]>("groceries", []);
 
+  const [keyboardVisible, setKeyboardVisible] = useState<boolean>(false);
+
   const addItems = (items: IItems[]) => {
     const arrA = groceries;
     const arrB = items;
@@ -25,10 +28,17 @@ const Home: NextPage = () => {
   return (
     <Box sx={{ height: "100vh" }}>
       <TopBar />
-      <ItemContainer items={groceries} setGroceries={setGroceries} />
-      {/* actually a button to open a modal */}
-      <AddModal addItems={addItems} />
-      <BottomNav />
+      <Fade in timeout={800}>
+        <div>
+          <ItemContainer items={groceries} setGroceries={setGroceries} />
+          {/* actually a button to open a modal */}
+          <AddModal
+            addItems={addItems}
+            setKeyboardVisible={setKeyboardVisible}
+          />
+        </div>
+      </Fade>
+      <BottomNav keyboardVisible={keyboardVisible} />
     </Box>
   );
 };
