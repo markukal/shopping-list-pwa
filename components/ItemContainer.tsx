@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/material";
+import { IconButton, List, useTheme } from "@mui/material";
 import { FC } from "react";
 import { IItems } from "../pages";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -32,6 +32,7 @@ const ListRow = styled.li`
   text-indent: 10px;
   height: auto;
   text-transform: capitalize;
+  min-height: 41px;
 `;
 
 export const ItemContainer: FC<IItemContainerProps> = ({
@@ -50,6 +51,15 @@ export const ItemContainer: FC<IItemContainerProps> = ({
     }
   };
 
+  const renderEmptyRows = () => {
+    const rows: JSX.Element[] = [];
+
+    for (var i = items.length; i < 15; i++) {
+      rows.push(<ListRow key={items.length + i} />);
+    }
+    return rows;
+  };
+
   return (
     items && (
       <div>
@@ -59,17 +69,17 @@ export const ItemContainer: FC<IItemContainerProps> = ({
               {items.map((item, index) => (
                 <ListRow
                   key={index}
-                  onClick={() => handleChecked(index)}
                   style={{
                     textDecoration: item.checked ? "line-through" : "none",
                   }}
                 >
-                  {item.item}
+                  <span onClick={() => handleChecked(index)}>{item.item}</span>
                   <IconButton onClick={() => handleDelete(index)}>
-                    <DeleteIcon />
+                    <DeleteIcon sx={{ color: "#575757" }} />
                   </IconButton>
                 </ListRow>
               ))}
+              {renderEmptyRows()}
             </ul>
           </NotebookList>
         </NotebookContainer>
